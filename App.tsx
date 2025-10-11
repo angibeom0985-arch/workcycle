@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { ShiftPattern } from "./types";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import Header from "./components/Header";
@@ -6,10 +7,8 @@ import Ads from "./components/Ads";
 import ShiftForm from "./components/ShiftForm";
 import Calendar from "./components/Calendar";
 
-type Page = "setup" | "calendar";
-
 const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<Page>("setup");
+  const navigate = useNavigate();
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const [shiftPattern, setShiftPattern] = useLocalStorage<ShiftPattern>(
@@ -23,32 +22,41 @@ const App: React.FC = () => {
   );
 
   const handleCompleteSetup = () => {
-    setCurrentPage("calendar");
+    navigate("/calendar");
   };
 
   const handleBackToSetup = () => {
-    setCurrentPage("setup");
+    navigate("/");
   };
 
   return (
-    <div className="min-h-screen text-gray-800 relative">
+    <div className="min-h-screen text-gray-800 relative pb-16 md:pb-28">
       <Header />
       <Ads />
       <main className="container mx-auto p-2 sm:p-4 max-w-screen-lg">
-        {currentPage === "setup" ? (
-          <ShiftForm
-            shiftPattern={shiftPattern}
-            setShiftPattern={setShiftPattern}
-            onComplete={handleCompleteSetup}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ShiftForm
+                shiftPattern={shiftPattern}
+                setShiftPattern={setShiftPattern}
+                onComplete={handleCompleteSetup}
+              />
+            }
           />
-        ) : (
-          <Calendar
-            currentDate={currentDate}
-            setCurrentDate={setCurrentDate}
-            shiftPattern={shiftPattern}
-            onBackToSetup={handleBackToSetup}
+          <Route
+            path="/calendar"
+            element={
+              <Calendar
+                currentDate={currentDate}
+                setCurrentDate={setCurrentDate}
+                shiftPattern={shiftPattern}
+                onBackToSetup={handleBackToSetup}
+              />
+            }
           />
-        )}
+        </Routes>
       </main>
     </div>
   );
