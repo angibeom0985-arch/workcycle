@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: "Noto Sans KR", sans-serif;
     background: linear-gradient(to bottom right, #f8fafc, #eff6ff, #eef2ff);
     min-height: 100vh;
   }

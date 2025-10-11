@@ -1,21 +1,62 @@
 {
-  "name": "workcycle",
-  "short_name": "교대근무달력",
-  "description": "3교대 4교대 근무표 자동 생성기",
+  "name": "워크사이클 - 교대근무 달력",
+  "short_name": "워크사이클",
+  "description": "3교대, 4교대 근무표를 자동으로 생성하고 관리하는 스마트 교대근무 달력 앱",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#2563eb",
+  "categories": ["productivity", "utilities"],
+  "lang": "ko",
+  "dir": "ltr",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "근무 패턴 설정",
+      "short_name": "설정",
+      "description": "근무 패턴을 설정합니다",
+      "url": "/",
+      "icons": [
+        {
+          "src": "/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "달력 보기",
+      "short_name": "달력",
+      "description": "근무 달력을 확인합니다",
+      "url": "/calendar",
+      "icons": [
+        {
+          "src": "/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }
