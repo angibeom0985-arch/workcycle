@@ -1,18 +1,18 @@
-const CACHE_NAME = 'workcycle-v1';
+const CACHE_NAME = "workcycle-v1";
 const urlsToCache = [
-  '/',
-  '/calendar',
-  '/index.html',
-  '/manifest.json',
-  '/android-chrome-192x192.png',
-  '/android-chrome-512x512.png',
+  "/",
+  "/calendar",
+  "/index.html",
+  "/manifest.json",
+  "/android-chrome-192x192.png",
+  "/android-chrome-512x512.png",
 ];
 
 // Install event - cache files
-self.addEventListener('install', (event) => {
+self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('Opened cache');
+      console.log("Opened cache");
       return cache.addAll(urlsToCache);
     })
   );
@@ -20,7 +20,7 @@ self.addEventListener('install', (event) => {
 });
 
 // Fetch event - serve from cache, fallback to network
-self.addEventListener('fetch', (event) => {
+self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
       // Cache hit - return response
@@ -29,7 +29,7 @@ self.addEventListener('fetch', (event) => {
       }
       return fetch(event.request).then((response) => {
         // Check if valid response
-        if (!response || response.status !== 200 || response.type !== 'basic') {
+        if (!response || response.status !== 200 || response.type !== "basic") {
           return response;
         }
 
@@ -47,7 +47,7 @@ self.addEventListener('fetch', (event) => {
 });
 
 // Activate event - clean up old caches
-self.addEventListener('activate', (event) => {
+self.addEventListener("activate", (event) => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then((cacheNames) => {
