@@ -22,7 +22,7 @@ const ShiftForm: React.FC<ShiftFormProps> = ({
 
   return (
     <div
-      className="bg-white p-4 sm:p-6 rounded-xl border border-gray-200 h-full"
+      className="bg-white p-4 sm:p-6 pb-24 sm:pb-28 rounded-xl border border-gray-200 h-full"
       style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}
     >
       <h2 className="text-lg font-bold mb-4 text-gray-800 flex items-center">
@@ -123,7 +123,7 @@ const ShiftForm: React.FC<ShiftFormProps> = ({
 
       <button
         onClick={onComplete}
-        className="mt-6 w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow-md hover:shadow-lg"
+        className="mt-6 mb-20 sm:mb-24 w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow-md hover:shadow-lg"
       >
         완료
       </button>
