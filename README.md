@@ -10,8 +10,7 @@ View your app in AI Studio: https://ai.studio/apps/drive/12DUH6SMXmNM9JZupXYytqq
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js
 
 1. Install dependencies:
    `npm install`
@@ -40,6 +39,7 @@ This project was created in AI Studio and uses Vite + React. The steps below wil
    ```
 
 3. On Vercel:
+
    - Create a new project and import from your GitHub repository.
    - Build command: `npm run build`
    - Output directory: `dist`
@@ -51,6 +51,7 @@ This project was created in AI Studio and uses Vite + React. The steps below wil
    - Follow DNS instructions provided by Vercel to point your domain (usually add CNAME or ALIAS records).
 
 Notes:
+
 - The project already includes a `vercel.json` for static builds and an `index.css` prepared for Tailwind.
 - Make sure to remove any AI Studio-specific importmaps (already cleaned) so the app uses local `react` packages.
 
