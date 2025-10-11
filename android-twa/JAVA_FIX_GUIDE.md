@@ -1,6 +1,7 @@
 # Android Studio Java 버전 문제 해결 가이드
 
 ## 문제 증상
+
 ```
 [!] Android Studio (version 2025.1.2)
     X Unable to determine bundled Java version.
@@ -47,6 +48,7 @@ Write-Host "`n⚠️ PowerShell을 재시작한 후 확인하세요." -Foregroun
 ```
 
 #### PowerShell 재시작 후 확인:
+
 ```powershell
 java -version
 ```
@@ -71,6 +73,7 @@ java -version
 ```
 
 또는 **수동 다운로드**:
+
 1. [Adoptium Temurin JDK 21](https://adoptium.net/temurin/releases/?version=21) 접속
 2. **Windows x64 MSI** 다운로드
 3. 설치 시 **Set JAVA_HOME variable** 체크
@@ -92,6 +95,7 @@ java -version
 ## ✅ 확인 방법
 
 ### PowerShell에서 확인:
+
 ```powershell
 # Java 버전 확인
 java -version
@@ -105,6 +109,7 @@ cd "C:\Users\삼성\OneDrive\Desktop\Website\Workcycle\android-twa\WorkcycleApp"
 ```
 
 **올바른 출력 예시:**
+
 ```
 openjdk version "21.0.x" 2024-xx-xx
 OpenJDK Runtime Environment Temurin-21+xx (build 21.0.x+x)
@@ -118,6 +123,7 @@ OpenJDK 64-Bit Server VM Temurin-21+xx (build 21.0.x+x, mixed mode, sharing)
 ### build.gradle.kts에서 Java 버전 확인:
 
 `WorkcycleApp/app/build.gradle.kts`:
+
 ```kotlin
 android {
     // ...
@@ -135,6 +141,7 @@ android {
 ### Gradle wrapper 속성:
 
 `WorkcycleApp/gradle/wrapper/gradle-wrapper.properties`:
+
 ```properties
 distributionUrl=https\://services.gradle.org/distributions/gradle-8.7-bin.zip
 ```
@@ -144,6 +151,7 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-8.7-bin.zip
 ## 🐛 문제가 계속되면
 
 ### 1. Android Studio 완전 재설치:
+
 ```powershell
 # 설정 파일 삭제
 Remove-Item -Recurse -Force "$env:USERPROFILE\.android" -ErrorAction SilentlyContinue
@@ -156,11 +164,13 @@ Remove-Item -Recurse -Force "$env:LOCALAPPDATA\Google\AndroidStudio*" -ErrorActi
 ```
 
 ### 2. Flutter Doctor 재실행:
+
 ```powershell
 flutter doctor -v
 ```
 
 ### 3. Android SDK 경로 확인:
+
 ```powershell
 # Android Studio에서:
 # File → Settings → Appearance & Behavior → System Settings → Android SDK
@@ -202,6 +212,7 @@ cd "android-twa\WorkcycleApp"
 ```
 
 **출력:**
+
 ```
 BUILD SUCCESSFUL in Xs
 ```

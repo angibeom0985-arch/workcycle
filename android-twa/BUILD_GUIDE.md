@@ -1,6 +1,7 @@
 # Android APK/AAB 빌드 가이드
 
 ## 📋 사전 요구사항
+
 - Android Studio (최신 버전)
 - JDK 17 이상
 - 프로젝트 폴더: `android-twa/WorkcycleApp`
@@ -10,6 +11,7 @@
 ## 🚀 1단계: 키스토어 생성
 
 ### Windows PowerShell에서 실행:
+
 ```powershell
 # 프로젝트 디렉토리로 이동
 cd "C:\Users\삼성\OneDrive\Desktop\Website\Workcycle\android-twa"
@@ -28,6 +30,7 @@ keytool -genkey -v -keystore workcycle-release.keystore -alias workcycle -keyalg
 ```
 
 ### SHA-256 Fingerprint 추출:
+
 ```powershell
 keytool -list -v -keystore workcycle-release.keystore -alias workcycle
 
@@ -39,6 +42,7 @@ keytool -list -v -keystore workcycle-release.keystore -alias workcycle
 ## 🔧 2단계: Android Studio 프로젝트 설정
 
 ### 2-1. 새 프로젝트 생성
+
 1. Android Studio 실행
 2. **File** → **New** → **New Project**
 3. **Empty Views Activity** 선택
@@ -51,6 +55,7 @@ keytool -list -v -keystore workcycle-release.keystore -alias workcycle
 5. **Finish** 클릭
 
 ### 2-2. build.gradle.kts (Project level) 수정
+
 파일 위치: `WorkcycleApp/build.gradle.kts`
 
 ```kotlin
@@ -61,6 +66,7 @@ plugins {
 ```
 
 ### 2-3. build.gradle.kts (Module: app) 수정
+
 파일 위치: `WorkcycleApp/app/build.gradle.kts`
 
 ```kotlin
@@ -122,14 +128,14 @@ android {
 dependencies {
     // AndroidX Browser Helper for TWA
     implementation("com.google.androidbrowserhelper:androidbrowserhelper:2.5.0")
-    
+
     // Core Android dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -137,6 +143,7 @@ dependencies {
 ```
 
 ### 2-4. AndroidManifest.xml 수정
+
 파일 위치: `WorkcycleApp/app/src/main/AndroidManifest.xml`
 
 ```xml
@@ -224,6 +231,7 @@ dependencies {
 ```
 
 ### 2-5. colors.xml 생성
+
 파일 위치: `WorkcycleApp/app/src/main/res/values/colors.xml`
 
 ```xml
@@ -236,14 +244,17 @@ dependencies {
 ```
 
 ### 2-6. file_paths.xml 생성
+
 파일 위치: `WorkcycleApp/app/src/main/res/xml/file_paths.xml`
 
 디렉토리 생성 후:
+
 ```powershell
 New-Item -ItemType Directory -Path "WorkcycleApp/app/src/main/res/xml" -Force
 ```
 
 파일 내용:
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
@@ -257,6 +268,7 @@ New-Item -ItemType Directory -Path "WorkcycleApp/app/src/main/res/xml" -Force
 ## 📦 3단계: APK/AAB 빌드
 
 ### Debug APK 빌드 (테스트용)
+
 ```powershell
 # Android Studio Terminal 또는 PowerShell에서:
 cd "WorkcycleApp"
@@ -267,6 +279,7 @@ cd "WorkcycleApp"
 ```
 
 ### Release AAB 빌드 (Play Store 배포용)
+
 ```powershell
 # Android Studio Terminal 또는 PowerShell에서:
 cd "WorkcycleApp"
@@ -277,6 +290,7 @@ cd "WorkcycleApp"
 ```
 
 ### Release APK 빌드 (직접 배포용)
+
 ```powershell
 cd "WorkcycleApp"
 ./gradlew assembleRelease
@@ -290,6 +304,7 @@ cd "WorkcycleApp"
 ## 🔐 4단계: Digital Asset Links 설정
 
 ### SHA-256 확인 후 assetlinks.json 생성
+
 파일 위치: `public/.well-known/assetlinks.json`
 
 ```json
@@ -299,15 +314,14 @@ cd "WorkcycleApp"
     "target": {
       "namespace": "android_app",
       "package_name": "com.workcycle.app",
-      "sha256_cert_fingerprints": [
-        "YOUR_SHA256_FINGERPRINT_HERE"
-      ]
+      "sha256_cert_fingerprints": ["YOUR_SHA256_FINGERPRINT_HERE"]
     }
   }
 ]
 ```
 
 웹사이트에 배포 후 확인:
+
 ```
 https://workcycle.money-hotissue.com/.well-known/assetlinks.json
 ```
@@ -317,8 +331,10 @@ https://workcycle.money-hotissue.com/.well-known/assetlinks.json
 ## 🧪 5단계: 테스트
 
 ### 에뮬레이터에서 테스트:
+
 1. Android Studio → **Device Manager** → 에뮬레이터 생성/실행
 2. Terminal:
+
 ```powershell
 # Debug APK 설치
 adb install "WorkcycleApp/app/build/outputs/apk/debug/app-debug.apk"
@@ -328,6 +344,7 @@ adb shell am start -n com.workcycle.app.debug/com.google.androidbrowserhelper.tr
 ```
 
 ### 실제 기기에서 테스트:
+
 1. USB 디버깅 활성화
 2. USB로 연결
 3. 위 명령어 실행 (`.debug` 제거)
@@ -337,6 +354,7 @@ adb shell am start -n com.workcycle.app.debug/com.google.androidbrowserhelper.tr
 ## 📤 6단계: Play Store 업로드
 
 ### 준비물:
+
 - ✅ `app-release.aab` 파일
 - ✅ Google Play Console 계정 ($25 등록비)
 - ✅ 앱 아이콘 (512x512 PNG)
@@ -344,6 +362,7 @@ adb shell am start -n com.workcycle.app.debug/com.google.androidbrowserhelper.tr
 - ✅ 개인정보처리방침 URL
 
 ### 업로드:
+
 1. [Google Play Console](https://play.google.com/console) 접속
 2. **앱 만들기** 클릭
 3. AAB 파일 업로드
@@ -354,17 +373,18 @@ adb shell am start -n com.workcycle.app.debug/com.google.androidbrowserhelper.tr
 
 ## 🎯 빌드 요약
 
-| 빌드 타입 | 명령어 | 용도 | 출력 위치 |
-|---------|--------|------|----------|
-| Debug APK | `./gradlew assembleDebug` | 개발/테스트 | `apk/debug/app-debug.apk` |
-| Release APK | `./gradlew assembleRelease` | 직접 배포 | `apk/release/app-release.apk` |
-| Release AAB | `./gradlew bundleRelease` | Play Store | `bundle/release/app-release.aab` |
+| 빌드 타입   | 명령어                      | 용도        | 출력 위치                        |
+| ----------- | --------------------------- | ----------- | -------------------------------- |
+| Debug APK   | `./gradlew assembleDebug`   | 개발/테스트 | `apk/debug/app-debug.apk`        |
+| Release APK | `./gradlew assembleRelease` | 직접 배포   | `apk/release/app-release.apk`    |
+| Release AAB | `./gradlew bundleRelease`   | Play Store  | `bundle/release/app-release.aab` |
 
 ---
 
 ## 🐛 문제 해결
 
 ### Gradle 빌드 오류:
+
 ```powershell
 # Gradle 캐시 정리
 ./gradlew clean
@@ -372,10 +392,12 @@ adb shell am start -n com.workcycle.app.debug/com.google.androidbrowserhelper.tr
 ```
 
 ### 서명 오류:
+
 - `build.gradle.kts`의 키스토어 경로 및 비밀번호 확인
 - 키스토어 파일이 올바른 위치에 있는지 확인
 
 ### TWA가 Chrome 앱처럼 열리지 않음:
+
 - `assetlinks.json` 파일이 웹사이트에 올바르게 배포되었는지 확인
 - SHA-256 fingerprint가 정확한지 확인
 - Chrome에서 `chrome://flags/#enable-twa` 활성화
