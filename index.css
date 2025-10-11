@@ -22,34 +22,9 @@
 }
 
 /* Ads layout */
-.left-vertical,
-.right-vertical {
-  z-index: 30;
-}
-
 .anchor-ad {
   z-index: 40;
   pointer-events: auto;
-}
-
-/* Make sure main content has side padding to avoid overlap with vertical ads on desktop */
-@media (min-width: 769px) {
-  main.container {
-    padding-left: 140px; /* space for left ad */
-    padding-right: 140px; /* space for right ad */
-  }
-}
-
-@media (max-width: 768px) {
-  /* Hide side ads on mobile */
-  .left-vertical,
-  .right-vertical {
-    display: none !important;
-  }
-  main.container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
 }
 
 /* adblock overlay */

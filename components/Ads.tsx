@@ -92,37 +92,6 @@ const Ads: React.FC = () => {
 
   return (
     <>
-      {/* Left and right vertical ads (desktop only) */}
-      {!mobile && (
-        <>
-          <AdSlot className="left-vertical fixed left-0 top-0 h-full w-24 md:w-32 lg:w-44 flex items-center justify-center p-2 pointer-events-none">
-            <div style={{ width: "120px" }}>
-              {/* Placeholder vertical ad - replace with actual ad markup if needed */}
-              <ins
-                className="adsbygoogle"
-                style={{ display: "block", width: "120px", height: "600px" }}
-                data-ad-client="ca-pub-2686975437928535"
-                data-ad-slot="4510733526"
-                data-ad-format="auto"
-                data-full-width-responsive="false"
-              ></ins>
-            </div>
-          </AdSlot>
-          <AdSlot className="right-vertical fixed right-0 top-0 h-full w-24 md:w-32 lg:w-44 flex items-center justify-center p-2 pointer-events-none">
-            <div style={{ width: "120px" }}>
-              <ins
-                className="adsbygoogle"
-                style={{ display: "block", width: "120px", height: "600px" }}
-                data-ad-client="ca-pub-2686975437928535"
-                data-ad-slot="4510733526"
-                data-ad-format="auto"
-                data-full-width-responsive="false"
-              ></ins>
-            </div>
-          </AdSlot>
-        </>
-      )}
-
       {/* Bottom anchor ad (mobile + desktop) */}
       <div className="anchor-ad fixed left-0 right-0 bottom-0 z-40 flex items-center justify-center p-2 pointer-events-auto">
         <div className="w-full flex items-center justify-center">
