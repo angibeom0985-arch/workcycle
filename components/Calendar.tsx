@@ -170,7 +170,7 @@ const Calendar: React.FC<CalendarProps> = ({
 
   return (
     <div
-      className="bg-white p-3 sm:p-5 rounded-xl border border-gray-200"
+      className="bg-white p-3 sm:p-5 mb-20 sm:mb-24 rounded-xl border border-gray-200"
       style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}
     >
       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
