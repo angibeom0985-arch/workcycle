@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="100" cy="100" r="120" fill="white" opacity="0.1"/>
+  <circle cx="1100" cy="530" r="150" fill="white" opacity="0.1"/>
+  
+  <!-- Main content container -->
+  <rect x="100" y="150" width="1000" height="380" rx="20" fill="white" opacity="0.95"/>
+  
+  <!-- Calendar icon (large) -->
+  <rect x="150" y="220" width="200" height="200" rx="20" fill="#3b82f6"/>
+  <rect x="170" y="250" width="160" height="130" rx="10" fill="white"/>
+  <rect x="170" y="250" width="160" height="30" rx="10" fill="#1e40af"/>
+  <circle cx="200" cy="240" r="8" fill="white"/>
+  <circle cx="300" cy="240" r="8" fill="white"/>
+  
+  <!-- Calendar grid -->
+  <line x1="180" y1="300" x2="320" y2="300" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="180" y1="330" x2="320" y2="330" stroke="#94a3b8" stroke-width="2"/>
+  
+  <!-- Day/Night/Off indicators in calendar -->
+  <circle cx="205" cy="315" r="10" fill="#fbbf24"/>
+  <circle cx="280" cy="315" r="10" fill="#4338ca"/>
+  <rect x="235" y="340" width="30" height="20" rx="5" fill="#ef4444"/>
+  
+  <!-- Text content -->
+  <text x="420" y="260" font-family="'Noto Sans KR', sans-serif" font-size="64" font-weight="bold" fill="#1e3a8a">
+    교대근무 달력
+  </text>
+  <text x="420" y="330" font-family="'Noto Sans KR', sans-serif" font-size="36" fill="#64748b">
+    3교대 · 4교대 근무표 자동 생성
+  </text>
+  <text x="420" y="390" font-family="'Noto Sans KR', sans-serif" font-size="28" fill="#94a3b8">
+    주간 · 야간 · 휴무 스케줄을 한눈에
+  </text>
+  
+  <!-- Features -->
+  <g transform="translate(420, 430)">
+    <circle cx="0" cy="0" r="8" fill="#10b981"/>
+    <text x="20" y="8" font-family="'Noto Sans KR', sans-serif" font-size="24" fill="#475569">
+      무료 온라인 도구
+    </text>
+  </g>
+  <g transform="translate(680, 430)">
+    <circle cx="0" cy="0" r="8" fill="#10b981"/>
+    <text x="20" y="8" font-family="'Noto Sans KR', sans-serif" font-size="24" fill="#475569">
+      간편한 설정
+    </text>
+  </g>
+  
+  <!-- Bottom URL -->
+  <text x="600" y="580" font-family="'Noto Sans KR', sans-serif" font-size="20" fill="white" text-anchor="middle" opacity="0.9">
+    workcycle.money-hotissue.com
+  </text>
+</svg>

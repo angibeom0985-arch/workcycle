@@ -103,11 +103,11 @@ const Calendar: React.FC<CalendarProps> = ({ currentDate, setCurrentDate, shiftP
           textColor = dayOfWeek === 0 ? 'text-red-500' : 'text-blue-500';
       }
 
-      const dayCellClasses = `relative p-1 sm:p-2 border-r border-b border-gray-200 text-sm h-20 sm:h-24 md:h-28 transition-colors duration-200 ${bgColor}`;
+      const dayCellClasses = `relative p-1 sm:p-2 border-r border-b border-gray-200 text-sm h-20 sm:h-24 md:h-28 transition-all duration-200 hover:bg-opacity-80 ${bgColor}`;
       
       days.push(
         <div key={day} className={dayCellClasses}>
-          <div className={`relative z-10 flex justify-center items-center rounded-full w-6 h-6 sm:w-7 sm:h-7 ${isToday(day) ? 'bg-blue-600 text-white font-bold' : ''}`}>
+          <div className={`relative z-10 flex justify-center items-center rounded-full w-7 h-7 sm:w-8 sm:h-8 ${isToday(day) ? 'bg-blue-600 text-white font-bold shadow-md' : ''}`}>
             <span className={isToday(day) ? '' : textColor}>{day}</span>
           </div>
           {statusText && (
@@ -140,33 +140,33 @@ const Calendar: React.FC<CalendarProps> = ({ currentDate, setCurrentDate, shiftP
   const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
 
   return (
-    <div className="bg-white p-2 sm:p-4 rounded-lg shadow-lg">
+    <div className="bg-white p-3 sm:p-5 rounded-xl border border-gray-200" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg sm:text-xl font-bold text-gray-800">
+        <h2 className="text-lg sm:text-xl font-bold text-gray-900">
           {year}년 {month + 1}월
         </h2>
         <div className="flex items-center space-x-2">
-          <button onClick={goToToday} className="px-3 py-1 text-sm bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition">
+          <button onClick={goToToday} className="px-3 py-1.5 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium">
             오늘
           </button>
-          <button onClick={prevMonth} className="p-2 rounded-full hover:bg-gray-200 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+          <button onClick={prevMonth} className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
           </button>
-          <button onClick={nextMonth} className="p-2 rounded-full hover:bg-gray-200 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          <button onClick={nextMonth} className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-7 border-t border-l border-gray-200">
+      <div className="grid grid-cols-7 border border-gray-200 rounded-lg overflow-hidden">
         {weekDays.map((day, index) => (
-          <div key={day} className={`text-center py-3 font-semibold text-xs sm:text-sm border-r border-b border-gray-200 bg-gray-50 
-            ${index === 0 ? 'text-red-500' : index === 6 ? 'text-blue-500' : 'text-gray-600'}`}>
+          <div key={day} className={`text-center py-2.5 font-semibold text-xs sm:text-sm border-r border-b border-gray-200 bg-gradient-to-b from-gray-50 to-gray-100 
+            ${index === 0 ? 'text-red-600' : index === 6 ? 'text-blue-600' : 'text-gray-700'}`}>
             {day}
           </div>
         ))}
         {renderDays()}
       </div>
-      <div className="mt-4 flex flex-wrap items-center justify-center sm:justify-end gap-x-4 gap-y-2 text-sm">
+      <div className="mt-4 pt-4 border-t border-gray-200 flex flex-wrap items-center justify-center sm:justify-end gap-x-4 gap-y-2 text-sm text-gray-600">
         {renderLegend()}
       </div>
     </div>

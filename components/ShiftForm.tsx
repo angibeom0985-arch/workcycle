@@ -16,8 +16,11 @@ const ShiftForm: React.FC<ShiftFormProps> = ({ shiftPattern, setShiftPattern }) 
   };
 
   return (
-    <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg h-full">
-      <h2 className="text-xl font-bold mb-4 text-gray-700">근무 패턴 설정</h2>
+    <div className="bg-white p-4 sm:p-6 rounded-xl border border-gray-200 h-full" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
+      <h2 className="text-lg font-bold mb-4 text-gray-800 flex items-center">
+        <span className="w-1 h-5 bg-blue-500 rounded-full mr-2"></span>
+        근무 패턴 설정
+      </h2>
       
       <div className="space-y-4">
         <div>
@@ -76,11 +79,18 @@ const ShiftForm: React.FC<ShiftFormProps> = ({ shiftPattern, setShiftPattern }) 
           />
         </div>
       </div>
-      <div className="mt-6 p-4 bg-blue-50 border-l-4 border-blue-400 text-blue-700 rounded-r-lg">
-        <h3 className="font-bold">사용법 안내</h3>
-        <p className="text-sm mt-1">
-          주간, 야간, 휴무 주기를 순서대로 입력하고, 주기가 시작되는 첫 주간 근무일을 선택하세요.
-        </p>
+      <div className="mt-6 p-4 bg-blue-50 border border-blue-200 text-blue-800 rounded-lg">
+        <div className="flex items-start space-x-2">
+          <svg className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+          </svg>
+          <div>
+            <h3 className="font-semibold text-sm">사용법</h3>
+            <p className="text-sm mt-1 leading-relaxed">
+              주간, 야간, 휴무 주기를 입력하고 패턴 시작일을 선택하세요.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

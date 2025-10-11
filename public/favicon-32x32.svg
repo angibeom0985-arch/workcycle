@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="32" height="32" rx="4.8" fill="url(#bgGradient)"/>
+  
+  <!-- Calendar body -->
+  <rect x="6.4" y="8" width="19.2" height="17.6" 
+        rx="1.6" fill="white" opacity="0.95"/>
+  
+  <!-- Calendar header -->
+  <rect x="6.4" y="8" width="19.2" height="3.84" 
+        rx="1.6" fill="#1e40af"/>
+  
+  <!-- Ring holes -->
+  <circle cx="10.24" cy="7.04" r="1.28" fill="white"/>
+  <circle cx="21.76" cy="7.04" r="1.28" fill="white"/>
+  
+  <!-- Calendar grid (simplified) -->
+  <line x1="8" y1="14.4" x2="24" y2="14.4" 
+        stroke="#94a3b8" stroke-width="0.32"/>
+  <line x1="8" y1="17.6" x2="24" y2="17.6" 
+        stroke="#94a3b8" stroke-width="0.32"/>
+  <line x1="8" y1="20.8" x2="24" y2="20.8" 
+        stroke="#94a3b8" stroke-width="0.32"/>
+  
+  <!-- Day/Night indicators -->
+  <circle cx="11.2" cy="16" r="1.28" fill="#fbbf24"/>
+  <circle cx="20.8" cy="19.2" r="1.28" fill="#4338ca"/>
+  <rect x="15.36" y="21.76" width="3.84" height="2.56" 
+        rx="0.64" fill="#ef4444"/>
+</svg>
