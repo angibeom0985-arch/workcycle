@@ -248,7 +248,7 @@ const Calendar: React.FC<CalendarProps> = ({
         ))}
         {renderDays()}
       </div>
-      <div className="mt-4 mb-24 pt-4 border-t border-gray-200 flex flex-wrap items-center justify-center sm:justify-end gap-x-4 gap-y-2 text-sm text-gray-600">
+      <div className="mt-4 pt-4 border-t border-gray-200 flex flex-wrap items-center justify-center sm:justify-end gap-x-4 gap-y-2 text-sm text-gray-600">
         {renderLegend()}
       </div>
     </div>

@@ -8,7 +8,6 @@
 
 ```
 android-twa/
-├── BUILD_GUIDE.md                 # 상세 빌드 가이드
 ├── QUICK_START.md                 # ⭐ 빠른 시작 가이드 (30분)
 ├── README.md                      # 이 파일
 ├── build.ps1                      # 자동 빌드 스크립트
@@ -31,15 +30,17 @@ android-twa/
 
 ## 🚀 시작하기
 
-### 처음 시작하는 경우:
+### Android Studio 실행:
+```powershell
+# 시작 메뉴: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Android Studio
+# 또는
+Start-Process "C:\Program Files\Android\Android Studio\bin\studio64.exe"
+```
 
-1. **[QUICK_START.md](QUICK_START.md)** 를 열어서 30분 가이드를 따라하세요!
-2. 5단계만 따라하면 APK/AAB 파일이 생성됩니다.
-
-### 자세한 설명이 필요한 경우:
-
-- **[BUILD_GUIDE.md](BUILD_GUIDE.md)** 를 참고하세요.
-- 모든 단계별 상세 설명과 문제 해결 방법이 포함되어 있습니다.
+### APK/AAB 빌드:
+**[QUICK_START.md](QUICK_START.md)** 를 열어서 30분 가이드를 따라하세요!
+- 5단계만 따라하면 APK/AAB 파일이 생성됩니다
+- 모든 단계별 설명과 문제 해결 방법 포함
 
 ---
 

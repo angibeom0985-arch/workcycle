@@ -36,10 +36,14 @@ keytool -list -v -keystore workcycle-release.keystore -alias workcycle
 
 ### 2️⃣ Android Studio 프로젝트 생성 (5분)
 
-1. **Android Studio** 실행
-2. **New Project** 클릭
-3. **Empty Views Activity** 선택
-4. 설정:
+**Android Studio 실행:**
+- 시작 메뉴: `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Android Studio`
+- 또는 PowerShell: `Start-Process "C:\Program Files\Android\Android Studio\bin\studio64.exe"`
+
+**프로젝트 생성:**
+1. **New Project** 클릭
+2. **Empty Views Activity** 선택
+3. 설정:
    - Name: `WorkcycleApp`
    - Package: `com.workcycle.app`
    - Location: `C:\Users\삼성\OneDrive\Desktop\Website\Workcycle\android-twa\WorkcycleApp`

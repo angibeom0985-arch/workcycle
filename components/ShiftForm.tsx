@@ -123,7 +123,7 @@ const ShiftForm: React.FC<ShiftFormProps> = ({
 
       <button
         onClick={onComplete}
-        className="mt-6 mb-24 w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow-md hover:shadow-lg"
+        className="mt-6 w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow-md hover:shadow-lg"
       >
         완료
       </button>
