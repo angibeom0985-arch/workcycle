@@ -1,23 +1,23 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 // Canvas for Node.js (using a pure JS implementation)
 function createCanvas(width, height) {
   return {
     width,
     height,
-    getContext: function(type) {
-      if (type !== '2d') throw new Error('Only 2d context supported');
+    getContext: function (type) {
+      if (type !== "2d") throw new Error("Only 2d context supported");
       const pixels = new Array(width * height * 4).fill(0);
       return {
-        fillStyle: '#ffffff',
-        strokeStyle: '#000000',
+        fillStyle: "#ffffff",
+        strokeStyle: "#000000",
         lineWidth: 1,
-        font: '16px sans-serif',
-        textAlign: 'left',
-        textBaseline: 'top',
-        
-        fillRect: function(x, y, w, h) {
+        font: "16px sans-serif",
+        textAlign: "left",
+        textBaseline: "top",
+
+        fillRect: function (x, y, w, h) {
           const color = this.parseColor(this.fillStyle);
           for (let py = Math.max(0, y); py < Math.min(height, y + h); py++) {
             for (let px = Math.max(0, x); px < Math.min(width, x + w); px++) {
@@ -29,46 +29,48 @@ function createCanvas(width, height) {
             }
           }
         },
-        
-        fillText: function(text, x, y) {
+
+        fillText: function (text, x, y) {
           // Simplified text rendering (just marking pixels)
           console.log(`Text: "${text}" at (${x}, ${y})`);
         },
-        
-        beginPath: function() {},
-        moveTo: function(x, y) {},
-        lineTo: function(x, y) {},
-        arc: function(x, y, r, start, end) {},
-        stroke: function() {},
-        fill: function() {},
-        closePath: function() {},
-        
-        parseColor: function(color) {
-          if (color.startsWith('#')) {
+
+        beginPath: function () {},
+        moveTo: function (x, y) {},
+        lineTo: function (x, y) {},
+        arc: function (x, y, r, start, end) {},
+        stroke: function () {},
+        fill: function () {},
+        closePath: function () {},
+
+        parseColor: function (color) {
+          if (color.startsWith("#")) {
             const hex = color.substring(1);
             return {
               r: parseInt(hex.substring(0, 2), 16),
               g: parseInt(hex.substring(2, 4), 16),
               b: parseInt(hex.substring(4, 6), 16),
-              a: 255
+              a: 255,
             };
           }
           return { r: 255, g: 255, b: 255, a: 255 };
         },
-        
-        getImageData: function() {
+
+        getImageData: function () {
           return { data: pixels };
-        }
+        },
       };
     },
-    toBuffer: function(type) {
-      const ctx = this.getContext('2d');
+    toBuffer: function (type) {
+      const ctx = this.getContext("2d");
       const imageData = ctx.getImageData();
-      
+
       // Create simple PNG-like buffer (simplified)
-      const header = Buffer.from([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]);
+      const header = Buffer.from([
+        0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
+      ]);
       return Buffer.concat([header, Buffer.from(imageData.data)]);
-    }
+    },
   };
 }
 
@@ -84,32 +86,54 @@ function generateCalendarIconSVG(size) {
   </defs>
   
   <!-- Background -->
-  <rect width="${size}" height="${size}" rx="${size * 0.15}" fill="url(#bgGradient)"/>
+  <rect width="${size}" height="${size}" rx="${
+    size * 0.15
+  }" fill="url(#bgGradient)"/>
   
   <!-- Calendar body -->
-  <rect x="${size * 0.2}" y="${size * 0.25}" width="${size * 0.6}" height="${size * 0.55}" 
+  <rect x="${size * 0.2}" y="${size * 0.25}" width="${size * 0.6}" height="${
+    size * 0.55
+  }" 
         rx="${size * 0.05}" fill="white" opacity="0.95"/>
   
   <!-- Calendar header -->
-  <rect x="${size * 0.2}" y="${size * 0.25}" width="${size * 0.6}" height="${size * 0.12}" 
+  <rect x="${size * 0.2}" y="${size * 0.25}" width="${size * 0.6}" height="${
+    size * 0.12
+  }" 
         rx="${size * 0.05}" fill="#1e40af"/>
   
   <!-- Ring holes -->
-  <circle cx="${size * 0.32}" cy="${size * 0.22}" r="${size * 0.04}" fill="white"/>
-  <circle cx="${size * 0.68}" cy="${size * 0.22}" r="${size * 0.04}" fill="white"/>
+  <circle cx="${size * 0.32}" cy="${size * 0.22}" r="${
+    size * 0.04
+  }" fill="white"/>
+  <circle cx="${size * 0.68}" cy="${size * 0.22}" r="${
+    size * 0.04
+  }" fill="white"/>
   
   <!-- Calendar grid (simplified) -->
-  <line x1="${size * 0.25}" y1="${size * 0.45}" x2="${size * 0.75}" y2="${size * 0.45}" 
+  <line x1="${size * 0.25}" y1="${size * 0.45}" x2="${size * 0.75}" y2="${
+    size * 0.45
+  }" 
         stroke="#94a3b8" stroke-width="${size * 0.01}"/>
-  <line x1="${size * 0.25}" y1="${size * 0.55}" x2="${size * 0.75}" y2="${size * 0.55}" 
+  <line x1="${size * 0.25}" y1="${size * 0.55}" x2="${size * 0.75}" y2="${
+    size * 0.55
+  }" 
         stroke="#94a3b8" stroke-width="${size * 0.01}"/>
-  <line x1="${size * 0.25}" y1="${size * 0.65}" x2="${size * 0.75}" y2="${size * 0.65}" 
+  <line x1="${size * 0.25}" y1="${size * 0.65}" x2="${size * 0.75}" y2="${
+    size * 0.65
+  }" 
         stroke="#94a3b8" stroke-width="${size * 0.01}"/>
   
   <!-- Day/Night indicators -->
-  <circle cx="${size * 0.35}" cy="${size * 0.5}" r="${size * 0.04}" fill="#fbbf24"/>
-  <circle cx="${size * 0.65}" cy="${size * 0.6}" r="${size * 0.04}" fill="#4338ca"/>
-  <rect x="${size * 0.48}" y="${size * 0.68}" width="${size * 0.12}" height="${size * 0.08}" 
+  <circle cx="${size * 0.35}" cy="${size * 0.5}" r="${
+    size * 0.04
+  }" fill="#fbbf24"/>
+  <circle cx="${size * 0.65}" cy="${size * 0.6}" r="${
+    size * 0.04
+  }" fill="#4338ca"/>
+  <rect x="${size * 0.48}" y="${size * 0.68}" width="${size * 0.12}" height="${
+    size * 0.08
+  }" 
         rx="${size * 0.02}" fill="#ef4444"/>
 </svg>`;
 }
@@ -186,7 +210,7 @@ function generateOGImageSVG() {
 // Convert SVG to PNG using sharp
 async function svgToPNG(svgContent, outputPath, width, height) {
   try {
-    const sharp = require('sharp');
+    const sharp = require("sharp");
     await sharp(Buffer.from(svgContent))
       .resize(width, height)
       .png()
@@ -195,7 +219,7 @@ async function svgToPNG(svgContent, outputPath, width, height) {
   } catch (error) {
     console.error(`✗ Error creating ${outputPath}:`, error.message);
     // Fallback: save as SVG
-    const svgPath = outputPath.replace('.png', '.svg');
+    const svgPath = outputPath.replace(".png", ".svg");
     fs.writeFileSync(svgPath, svgContent);
     console.log(`  → Saved as SVG: ${path.basename(svgPath)}`);
   }
@@ -203,46 +227,46 @@ async function svgToPNG(svgContent, outputPath, width, height) {
 
 // Main generation function
 async function generateImages() {
-  const publicDir = path.join(__dirname, 'public');
-  
-  console.log('🎨 Generating icons and images...\n');
-  
+  const publicDir = path.join(__dirname, "public");
+
+  console.log("🎨 Generating icons and images...\n");
+
   // Generate different sizes
   const sizes = [
-    { name: 'favicon-16x16.png', size: 16 },
-    { name: 'favicon-32x32.png', size: 32 },
-    { name: 'apple-touch-icon.png', size: 180 },
-    { name: 'android-chrome-192x192.png', size: 192 },
-    { name: 'android-chrome-512x512.png', size: 512 }
+    { name: "favicon-16x16.png", size: 16 },
+    { name: "favicon-32x32.png", size: 32 },
+    { name: "apple-touch-icon.png", size: 180 },
+    { name: "android-chrome-192x192.png", size: 192 },
+    { name: "android-chrome-512x512.png", size: 512 },
   ];
-  
+
   for (const { name, size } of sizes) {
     const svg = generateCalendarIconSVG(size);
     await svgToPNG(svg, path.join(publicDir, name), size, size);
   }
-  
+
   // Generate OG image
   const ogSvg = generateOGImageSVG();
-  await svgToPNG(ogSvg, path.join(publicDir, 'og-image.png'), 1200, 630);
-  
+  await svgToPNG(ogSvg, path.join(publicDir, "og-image.png"), 1200, 630);
+
   // Generate ICO file (use 32x32 PNG and rename to .ico)
   const icoSvg = generateCalendarIconSVG(32);
-  const icoPath = path.join(publicDir, 'favicon.ico');
+  const icoPath = path.join(publicDir, "favicon.ico");
   try {
-    const sharp = require('sharp');
+    const sharp = require("sharp");
     await sharp(Buffer.from(icoSvg))
       .resize(32, 32)
       .png()
-      .toFile(icoPath.replace('.ico', '-temp.png'));
+      .toFile(icoPath.replace(".ico", "-temp.png"));
     // Copy to .ico (browsers accept PNG as .ico)
-    fs.copyFileSync(icoPath.replace('.ico', '-temp.png'), icoPath);
-    fs.unlinkSync(icoPath.replace('.ico', '-temp.png'));
+    fs.copyFileSync(icoPath.replace(".ico", "-temp.png"), icoPath);
+    fs.unlinkSync(icoPath.replace(".ico", "-temp.png"));
     console.log(`✓ Created: favicon.ico (32x32)`);
   } catch (e) {
     console.log(`✗ Could not create .ico, using placeholder`);
   }
-  
-  console.log('\n✅ All images generated successfully!');
+
+  console.log("\n✅ All images generated successfully!");
 }
 
 // Run

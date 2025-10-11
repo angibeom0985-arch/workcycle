@@ -56,9 +56,11 @@ const Ads: React.FC = () => {
     // Initialize ads after component mounts
     if (!adblockDetected) {
       try {
-        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
+          {}
+        );
       } catch (e) {
-        console.error('AdSense error:', e);
+        console.error("AdSense error:", e);
       }
     }
   }, [adblockDetected, mobile]);
