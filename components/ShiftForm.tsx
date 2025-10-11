@@ -4,11 +4,13 @@ import { ShiftPattern } from "../types";
 interface ShiftFormProps {
   shiftPattern: ShiftPattern;
   setShiftPattern: React.Dispatch<React.SetStateAction<ShiftPattern>>;
+  onComplete: () => void;
 }
 
 const ShiftForm: React.FC<ShiftFormProps> = ({
   shiftPattern,
   setShiftPattern,
+  onComplete,
 }) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
@@ -118,6 +120,13 @@ const ShiftForm: React.FC<ShiftFormProps> = ({
           </div>
         </div>
       </div>
+
+      <button
+        onClick={onComplete}
+        className="mt-6 w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow-md hover:shadow-lg"
+      >
+        완료
+      </button>
     </div>
   );
 };

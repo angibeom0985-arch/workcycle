@@ -5,6 +5,7 @@ interface CalendarProps {
   currentDate: Date;
   setCurrentDate: (date: Date) => void;
   shiftPattern: ShiftPattern;
+  onBackToSetup: () => void;
 }
 
 enum DayStatus {
@@ -51,6 +52,7 @@ const Calendar: React.FC<CalendarProps> = ({
   currentDate,
   setCurrentDate,
   shiftPattern,
+  onBackToSetup,
 }) => {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -171,11 +173,17 @@ const Calendar: React.FC<CalendarProps> = ({
       className="bg-white p-3 sm:p-5 rounded-xl border border-gray-200"
       style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}
     >
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
         <h2 className="text-lg sm:text-xl font-bold text-gray-900">
           {year}년 {month + 1}월
         </h2>
         <div className="flex items-center space-x-2">
+          <button
+            onClick={onBackToSetup}
+            className="px-3 py-1.5 text-sm bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
+          >
+            설정 수정
+          </button>
           <button
             onClick={goToToday}
             className="px-3 py-1.5 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium"

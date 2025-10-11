@@ -6,7 +6,10 @@ import Ads from "./components/Ads";
 import ShiftForm from "./components/ShiftForm";
 import Calendar from "./components/Calendar";
 
+type Page = "setup" | "calendar";
+
 const App: React.FC = () => {
+  const [currentPage, setCurrentPage] = useState<Page>("setup");
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const [shiftPattern, setShiftPattern] = useLocalStorage<ShiftPattern>(
@@ -19,26 +22,33 @@ const App: React.FC = () => {
     }
   );
 
+  const handleCompleteSetup = () => {
+    setCurrentPage("calendar");
+  };
+
+  const handleBackToSetup = () => {
+    setCurrentPage("setup");
+  };
+
   return (
     <div className="min-h-screen text-gray-800 relative">
       <Header />
       <Ads />
       <main className="container mx-auto p-2 sm:p-4 max-w-screen-lg">
-        <div className="flex flex-col gap-4">
-          <div>
-            <ShiftForm
-              shiftPattern={shiftPattern}
-              setShiftPattern={setShiftPattern}
-            />
-          </div>
-          <div>
-            <Calendar
-              currentDate={currentDate}
-              setCurrentDate={setCurrentDate}
-              shiftPattern={shiftPattern}
-            />
-          </div>
-        </div>
+        {currentPage === "setup" ? (
+          <ShiftForm
+            shiftPattern={shiftPattern}
+            setShiftPattern={setShiftPattern}
+            onComplete={handleCompleteSetup}
+          />
+        ) : (
+          <Calendar
+            currentDate={currentDate}
+            setCurrentDate={setCurrentDate}
+            shiftPattern={shiftPattern}
+            onBackToSetup={handleBackToSetup}
+          />
+        )}
       </main>
     </div>
   );
