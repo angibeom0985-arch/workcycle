@@ -1,53 +1,87 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 📱 Workcycle - 교대근무 달력
 
-# Run and deploy your AI Studio app
+3교대, 4교대 등 교대근무 스케줄을 쉽게 관리하는 멀티플랫폼 앱
 
-This contains everything you need to run your app locally.
+**🌐 웹사이트**: https://workcycle.money-hotissue.com
 
-View your app in AI Studio: https://ai.studio/apps/drive/12DUH6SMXmNM9JZupXYytqqA2kt0YGXY7
+---
 
-## Run Locally
+## 🚀 프로젝트 구조 (Monorepo)
 
-**Prerequisites:** Node.js
+```
+Workcycle/
+├── web/              # 웹 앱 (React + TypeScript + Vite)
+├── app/              # Flutter 모바일 앱 (Android + iOS)
+└── README.md
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 🌐 웹 앱 개발
 
-## Deploying to Vercel (GitHub integration)
+**기술 스택**: React 18, TypeScript, Vite, Tailwind CSS
 
-This project was created in AI Studio and uses Vite + React. The steps below will help you create a GitHub repository, push the project, and deploy it to Vercel with a custom domain `workcycle.money-hotissue.com`.
+```bash
+cd web
+npm install
+npm run dev
+```
 
-1. Initialize git (if you haven't already) and make an initial commit:
+**배포**: Vercel (자동 배포)
 
-   ```powershell
-   git init
-   git add .
-   git commit -m "Initial commit"
-   ```
+---
 
-2. Create a GitHub repository (via web UI or `gh` CLI) and add it as a remote, then push:
+## 📱 모바일 앱 개발
 
-   ```powershell
-   git remote add origin https://github.com/<your-username>/<repo-name>.git
-   git branch -M main
-   git push -u origin main
-   ```
+**기술 스택**: Flutter 3.35+, Dart 3.9+
 
-3. On Vercel:
+```bash
+cd app
+flutter pub get
+flutter run
+```
 
-   - Create a new project and import from your GitHub repository.
-   - Build command: `npm run build`
-   - Output directory: `dist`
-   - Set environment variables (Project Settings -> Environment Variables):
-     - `GEMINI_API_KEY` = <your key>
+**지원 플랫폼**: Android, iOS, Web, Windows, macOS, Linux
 
-4. Add your custom domain in Vercel (Project -> Domains):
-   - Add `workcycle.money-hotissue.com`.
+## 🎯 주요 기능
+
+- 📅 **근무 패턴 설정**: 주간/야간/휴무 일수 설정
+- 📆 **캘린더 뷰**: 월별 근무 스케줄 표시
+- 💾 **자동 저장**: 로컬 저장소에 설정 저장
+- 🎨 **색상 구분**: 근무 유형별 시각적 구분
+  - 🟡 주간 근무
+  - 🟣 야간 근무
+  - 🔴 휴무
+
+---
+
+## 📦 배포
+
+### 웹 배포
+```bash
+cd web
+git add .
+git commit -m "message"
+git push origin main
+```
+→ Vercel 자동 배포
+
+### Android 배포
+```bash
+cd app
+flutter build appbundle
+```
+→ Google Play Console 업로드
+
+---
+
+## 📄 라이선스
+
+MIT License
+
+---
+
+## 👤 개발자
+
+**GitHub**: https://github.com/angibeom0985-arch/workcycle
    - Follow DNS instructions provided by Vercel to point your domain (usually add CNAME or ALIAS records).
 
 Notes:
