@@ -1,4 +1,6 @@
 # Web (React + Vite)
+node_modules/
+dist/
 web/node_modules
 web/dist
 web/dist-ssr
