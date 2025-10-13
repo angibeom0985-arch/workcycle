@@ -11,10 +11,11 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final StorageService _storageService = StorageService();
-  
+
   ShiftPattern _shiftPattern = ShiftPattern(
     dayShifts: 2,
     nightShifts: 2,
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   Future<void> _saveAndNavigate() async {
     await _storageService.saveShiftPattern(_shiftPattern);
     _tabController.animateTo(1);
-    
+
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -104,11 +105,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
-          colors: [
-            Colors.grey[50]!,
-            Colors.blue[50]!,
-            Colors.purple[50]!,
-          ],
+          colors: [Colors.grey[50]!, Colors.blue[50]!, Colors.purple[50]!],
         ),
       ),
       child: SafeArea(
@@ -149,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         ],
                       ),
                       const SizedBox(height: 24),
-                      
+
                       // 주간 근무일
                       _buildNumberInput(
                         label: '주간 근무일',
@@ -158,12 +155,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         color: Colors.amber,
                         onChanged: (value) {
                           setState(() {
-                            _shiftPattern = _shiftPattern.copyWith(dayShifts: value);
+                            _shiftPattern = _shiftPattern.copyWith(
+                              dayShifts: value,
+                            );
                           });
                         },
                       ),
                       const SizedBox(height: 16),
-                      
+
                       // 야간 근무일
                       _buildNumberInput(
                         label: '야간 근무일',
@@ -172,12 +171,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         color: Colors.indigo,
                         onChanged: (value) {
                           setState(() {
-                            _shiftPattern = _shiftPattern.copyWith(nightShifts: value);
+                            _shiftPattern = _shiftPattern.copyWith(
+                              nightShifts: value,
+                            );
                           });
                         },
                       ),
                       const SizedBox(height: 16),
-                      
+
                       // 연속 휴무일
                       _buildNumberInput(
                         label: '연속 휴무일',
@@ -186,12 +187,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         color: Colors.red,
                         onChanged: (value) {
                           setState(() {
-                            _shiftPattern = _shiftPattern.copyWith(offDays: value);
+                            _shiftPattern = _shiftPattern.copyWith(
+                              offDays: value,
+                            );
                           });
                         },
                       ),
                       const SizedBox(height: 16),
-                      
+
                       // 패턴 시작일
                       _buildDatePicker(),
                     ],
@@ -199,7 +202,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 ),
               ),
               const SizedBox(height: 16),
-              
+
               // 사용법 안내
               Card(
                 elevation: 2,
@@ -247,7 +250,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 ),
               ),
               const SizedBox(height: 24),
-              
+
               // 완료 버튼
               ElevatedButton(
                 onPressed: _saveAndNavigate,
@@ -262,10 +265,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 ),
                 child: const Text(
                   '완료',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(height: 80), // 하단 여백
@@ -398,10 +398,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     color: Color(0xFF1F2937),
                   ),
                 ),
-                const Icon(
-                  Icons.calendar_month,
-                  color: Color(0xFF2563EB),
-                ),
+                const Icon(Icons.calendar_month, color: Color(0xFF2563EB)),
               ],
             ),
           ),

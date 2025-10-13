@@ -56,19 +56,23 @@ flutter run
 ## 📦 배포
 
 ### 웹 배포
+
 ```bash
 cd web
 git add .
 git commit -m "message"
 git push origin main
 ```
+
 → Vercel 자동 배포
 
 ### Android 배포
+
 ```bash
 cd app
 flutter build appbundle
 ```
+
 → Google Play Console 업로드
 
 ---
@@ -82,7 +86,8 @@ MIT License
 ## 👤 개발자
 
 **GitHub**: https://github.com/angibeom0985-arch/workcycle
-   - Follow DNS instructions provided by Vercel to point your domain (usually add CNAME or ALIAS records).
+
+- Follow DNS instructions provided by Vercel to point your domain (usually add CNAME or ALIAS records).
 
 Notes:
 
