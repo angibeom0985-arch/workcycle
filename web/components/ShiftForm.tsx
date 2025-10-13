@@ -1,6 +1,7 @@
 import React from "react";
 import { ShiftPattern } from "../types";
 
+// ShiftForm Component
 interface ShiftFormProps {
   shiftPattern: ShiftPattern;
   setShiftPattern: React.Dispatch<React.SetStateAction<ShiftPattern>>;
