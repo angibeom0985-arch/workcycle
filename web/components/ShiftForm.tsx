@@ -1,4 +1,4 @@
-ㅍimport React from "react";
+import React from "react";
 import { ShiftPattern } from "../types";
 
 interface ShiftFormProps {
