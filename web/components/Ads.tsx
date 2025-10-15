@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 const isMobile = () =>
   typeof window !== "undefined" && window.innerWidth <= 768;
@@ -22,6 +22,7 @@ const AdSlot: React.FC<{
 const Ads: React.FC = () => {
   const [adblockDetected, setAdblockDetected] = useState(false);
   const [mobile, setMobile] = useState(isMobile());
+  const adInitialized = useRef(false);
 
   useEffect(() => {
     const onResize = () => setMobile(isMobile());
@@ -53,8 +54,9 @@ const Ads: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Initialize ads after component mounts
-    if (!adblockDetected) {
+    // Initialize ads after component mounts (only once)
+    if (!adblockDetected && !adInitialized.current) {
+      adInitialized.current = true;
       try {
         ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
           {}
@@ -63,7 +65,7 @@ const Ads: React.FC = () => {
         console.error("AdSense error:", e);
       }
     }
-  }, [adblockDetected, mobile]);
+  }, [adblockDetected]);
 
   if (adblockDetected) {
     return (
