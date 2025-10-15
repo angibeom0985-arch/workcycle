@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 import '../models/shift_pattern.dart';
+import '../widgets/adsense_banner_ad.dart';
 
 class CalendarScreen extends StatefulWidget {
   final ShiftPattern shiftPattern;
@@ -266,6 +267,12 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 ),
               ),
             ),
+
+            // 앵커 광고
+            const AdSenseBannerAd(
+              publisherId: 'ca-pub-2686975437928535',
+              adSlot: '4510733526',
+            ),
           ],
         ),
       ),
@@ -299,12 +306,12 @@ class _CalendarScreenState extends State<CalendarScreen> {
         children: [
           // 날짜
           Positioned(
-            top: 4,
-            left: 4,
+            top: 2,
+            left: 2,
             child: Text(
               '${day.day}',
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 11,
                 fontWeight: FontWeight.bold,
                 color: isSelected ? Colors.white : Colors.black87,
               ),
@@ -313,12 +320,15 @@ class _CalendarScreenState extends State<CalendarScreen> {
           // 상태 텍스트
           if (statusText.isNotEmpty)
             Center(
-              child: Text(
-                statusText,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: isSelected ? Colors.white : textColor,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: Text(
+                  statusText,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: isSelected ? Colors.white : textColor,
+                  ),
                 ),
               ),
             ),

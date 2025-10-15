@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workcycle 앱 아이콘 생성기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        h1 {
+            color: #2563EB;
+            margin-bottom: 30px;
+        }
+        .icon-preview {
+            margin: 30px 0;
+        }
+        canvas {
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            margin: 10px;
+        }
+        button {
+            background: #2563EB;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #1d4ed8;
+        }
+        .info {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f3f4f6;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #4b5563;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📅 Workcycle 앱 아이콘</h1>
+        
+        <div class="icon-preview">
+            <canvas id="iconCanvas" width="1024" height="1024"></canvas>
+            <canvas id="foregroundCanvas" width="1024" height="1024"></canvas>
+        </div>
+        
+        <button onclick="downloadIcon()">일반 아이콘 다운로드 (app_icon.png)</button>
+        <button onclick="downloadForeground()">Foreground 아이콘 다운로드 (app_icon_foreground.png)</button>
+        
+        <div class="info">
+            <p><strong>사용 방법:</strong></p>
+            <p>1. 두 개의 아이콘을 모두 다운로드하세요.</p>
+            <p>2. <code>app/assets/icon/</code> 폴더에 저장하세요.</p>
+            <p>3. 터미널에서 <code>flutter pub get</code>을 실행하세요.</p>
+            <p>4. <code>flutter pub run flutter_launcher_icons</code>을 실행하세요.</p>
+        </div>
+    </div>
+
+    <script>
+        // 일반 아이콘 (배경 포함)
+        function drawIcon(canvas) {
+            const ctx = canvas.getContext('2d');
+            const size = 1024;
+            
+            // 배경 - 그라디언트
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#2563EB');
+            gradient.addColorStop(1, '#1d4ed8');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // 달력 아이콘 그리기
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const iconSize = size * 0.6;
+            
+            // 달력 배경
+            ctx.fillStyle = 'white';
+            ctx.roundRect(centerX - iconSize/2, centerY - iconSize/2 + 30, iconSize, iconSize - 30, 30);
+            ctx.fill();
+            
+            // 달력 헤더
+            ctx.fillStyle = '#ef4444';
+            ctx.beginPath();
+            ctx.roundRect(centerX - iconSize/2, centerY - iconSize/2 + 30, iconSize, iconSize * 0.25, [30, 30, 0, 0]);
+            ctx.fill();
+            
+            // 달력 링
+            ctx.fillStyle = '#ef4444';
+            const ringWidth = 40;
+            const ringHeight = 60;
+            const ringY = centerY - iconSize/2;
+            
+            // 왼쪽 링
+            ctx.beginPath();
+            ctx.roundRect(centerX - iconSize/3, ringY, ringWidth, ringHeight, 10);
+            ctx.fill();
+            
+            // 오른쪽 링
+            ctx.beginPath();
+            ctx.roundRect(centerX + iconSize/3 - ringWidth, ringY, ringWidth, ringHeight, 10);
+            ctx.fill();
+            
+            // 날짜 표시
+            ctx.fillStyle = '#1f2937';
+            ctx.font = 'bold 120px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('15', centerX, centerY + 80);
+            
+            // 교대 근무 표시
+            const symbolY = centerY + 200;
+            const symbolSize = 80;
+            
+            // 주간 (노란색)
+            ctx.fillStyle = '#fbbf24';
+            ctx.beginPath();
+            ctx.arc(centerX - 120, symbolY, symbolSize/2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // 야간 (남색)
+            ctx.fillStyle = '#4f46e5';
+            ctx.beginPath();
+            ctx.arc(centerX + 120, symbolY, symbolSize/2, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        // Foreground 아이콘 (투명 배경)
+        function drawForeground(canvas) {
+            const ctx = canvas.getContext('2d');
+            const size = 1024;
+            
+            // 투명 배경
+            ctx.clearRect(0, 0, size, size);
+            
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const iconSize = size * 0.7;
+            
+            // 달력 아이콘 그리기 (흰색)
+            ctx.fillStyle = 'white';
+            ctx.roundRect(centerX - iconSize/2, centerY - iconSize/2 + 30, iconSize, iconSize - 30, 30);
+            ctx.fill();
+            
+            // 달력 헤더
+            ctx.fillStyle = '#ef4444';
+            ctx.beginPath();
+            ctx.roundRect(centerX - iconSize/2, centerY - iconSize/2 + 30, iconSize, iconSize * 0.25, [30, 30, 0, 0]);
+            ctx.fill();
+            
+            // 달력 링
+            ctx.fillStyle = '#ef4444';
+            const ringWidth = 45;
+            const ringHeight = 70;
+            const ringY = centerY - iconSize/2;
+            
+            // 왼쪽 링
+            ctx.beginPath();
+            ctx.roundRect(centerX - iconSize/3, ringY, ringWidth, ringHeight, 10);
+            ctx.fill();
+            
+            // 오른쪽 링
+            ctx.beginPath();
+            ctx.roundRect(centerX + iconSize/3 - ringWidth, ringY, ringWidth, ringHeight, 10);
+            ctx.fill();
+            
+            // 날짜 표시
+            ctx.fillStyle = '#1f2937';
+            ctx.font = 'bold 140px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('15', centerX, centerY + 80);
+            
+            // 교대 근무 표시
+            const symbolY = centerY + 220;
+            const symbolSize = 90;
+            
+            // 주간 (노란색)
+            ctx.fillStyle = '#fbbf24';
+            ctx.beginPath();
+            ctx.arc(centerX - 130, symbolY, symbolSize/2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // 야간 (남색)
+            ctx.fillStyle = '#4f46e5';
+            ctx.beginPath();
+            ctx.arc(centerX + 130, symbolY, symbolSize/2, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        // roundRect polyfill
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radii) {
+                if (typeof radii === 'number') {
+                    radii = [radii, radii, radii, radii];
+                } else if (radii.length === 1) {
+                    radii = [radii[0], radii[0], radii[0], radii[0]];
+                } else if (radii.length === 2) {
+                    radii = [radii[0], radii[1], radii[0], radii[1]];
+                }
+                
+                this.beginPath();
+                this.moveTo(x + radii[0], y);
+                this.lineTo(x + width - radii[1], y);
+                this.quadraticCurveTo(x + width, y, x + width, y + radii[1]);
+                this.lineTo(x + width, y + height - radii[2]);
+                this.quadraticCurveTo(x + width, y + height, x + width - radii[2], y + height);
+                this.lineTo(x + radii[3], y + height);
+                this.quadraticCurveTo(x, y + height, x, y + height - radii[3]);
+                this.lineTo(x, y + radii[0]);
+                this.quadraticCurveTo(x, y, x + radii[0], y);
+                this.closePath();
+            };
+        }
+        
+        function downloadIcon() {
+            const canvas = document.getElementById('iconCanvas');
+            const link = document.createElement('a');
+            link.download = 'app_icon.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        function downloadForeground() {
+            const canvas = document.getElementById('foregroundCanvas');
+            const link = document.createElement('a');
+            link.download = 'app_icon_foreground.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // 페이지 로드 시 아이콘 그리기
+        window.onload = function() {
+            drawIcon(document.getElementById('iconCanvas'));
+            drawForeground(document.getElementById('foregroundCanvas'));
+        };
+    </script>
+</body>
+</html>

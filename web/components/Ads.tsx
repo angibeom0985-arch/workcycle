@@ -102,7 +102,7 @@ const Ads: React.FC = () => {
             style={{
               display: "block",
               width: mobile ? "320px" : "728px",
-              height: mobile ? "50px" : "90px",
+              height: mobile ? "33px" : "60px",
             }}
             data-ad-client="ca-pub-2686975437928535"
             data-ad-slot="4510733526"
