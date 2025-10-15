@@ -56,6 +56,16 @@ const App: React.FC = () => {
               />
             }
           />
+          <Route
+            path="*"
+            element={
+              <ShiftForm
+                shiftPattern={shiftPattern}
+                setShiftPattern={setShiftPattern}
+                onComplete={handleCompleteSetup}
+              />
+            }
+          />
         </Routes>
       </main>
     </div>
