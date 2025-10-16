@@ -95,19 +95,19 @@ const Ads: React.FC = () => {
   return (
     <>
       {/* Bottom anchor ad (mobile + desktop) */}
-      <div className="anchor-ad fixed left-0 right-0 bottom-0 z-40 flex items-center justify-center p-2 pointer-events-auto">
+      <div className="anchor-ad fixed left-0 right-0 bottom-0 z-40 flex items-center justify-center pointer-events-auto">
         <div className="w-full flex items-center justify-center">
           <ins
             className="adsbygoogle"
             style={{
               display: "block",
-              width: mobile ? "320px" : "728px",
-              height: mobile ? "33px" : "60px",
+              width: "100%",
+              height: mobile ? "50px" : "60px",
             }}
             data-ad-client="ca-pub-2686975437928535"
             data-ad-slot="4510733526"
             data-ad-format="auto"
-            data-full-width-responsive="false"
+            data-full-width-responsive="true"
           ></ins>
         </div>
       </div>
